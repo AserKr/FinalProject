@@ -27,7 +27,7 @@
                 <artifactId>exec-maven-plugin</artifactId>
                 <version>3.0.0</version>
                 <configuration>
-                    <mainClass>hi.HBV202G.Main</mainClass>
+                    <mainClass>hi.HBV202G.LibrarySystemApplication</mainClass>
                 </configuration>
             </plugin>
         </plugins>

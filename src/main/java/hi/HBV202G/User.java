@@ -1,6 +1,13 @@
 package hi.HBV202G;
 
 public class User {
+    public String name;
+
+    public User(String name) {
+        this.name = name;
+    }
+
+
     public String getName() {
         return name;
     }
@@ -9,10 +16,8 @@ public class User {
         name = name;
     }
 
-    public String name;
 
-    public void User(String Name){
-        this.name=name;
-    }
+
+
 
 }

@@ -1,6 +1,12 @@
 package hi.HBV202G;
 
 public class FacultyMember extends User{
+    private String department;
+    public FacultyMember(String name, String department) {
+        super(name);
+        this.department = department;
+    }
+
     public String getDepartment() {
         return department;
     }
@@ -9,9 +15,6 @@ public class FacultyMember extends User{
         this.department = department;
     }
 
-    private String department;
-    public void FacultyMember(String name, String department){
-        this.name=name;
-        this.department=department;
-    }
+
+
 }

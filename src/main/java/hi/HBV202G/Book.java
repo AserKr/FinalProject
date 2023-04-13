@@ -6,16 +6,11 @@ public class Book{
     private List<Author> authors;
     private String title;
 
-
     public Book(String name, List<Author> authors) throws EmptyAuthorListException {
         this.title = name;
         this.authors = authors;
         if(this.authors.isEmpty()){
             throw new EmptyAuthorListException("Author list is empty");
-
-
-
-
         }
     }
     public String getTitle() {
