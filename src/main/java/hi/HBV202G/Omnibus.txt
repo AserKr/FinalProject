@@ -1,0 +1,29 @@
+Name of the omnibus: Harry Potter
+Author of the omnibus: JK Rowling
+Number of Volumes: 7
+Harry Potter and the Philosopher's Stone
+Harry Potter and the Chamber of Secrets
+Harry Potter and the Prisoner of Azkaban
+Harry Potter and the Goblet of Fire
+Harry Potter and the Order of the Phoenix
+Harry Potter and the Half-Blood Prince
+Harry Potter and the Deathly Hallows
+Name of the omnibus: The Twilight Collection
+Author of the omnibus: Stephenie Meyer
+Number of Volumes: 6
+Twilight
+New Moon
+Eclipse
+Breaking Dawn
+Life and Death: Twilight Reimagined
+Midnight Sun
+Name of the omnibus: The Chronicles of Narnia
+Author of the omnibus: C. S. Lewis
+Number of Volumes: 7
+The Lion, the Witch and the Wardrobe
+Prince Caspian
+The Voyage of the Dawn Treader
+The Silver Chair
+The Horse and His Boy
+The Magician's Nephew
+The Last Battle
