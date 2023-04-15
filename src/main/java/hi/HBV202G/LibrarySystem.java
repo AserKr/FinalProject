@@ -54,23 +54,8 @@ public class LibrarySystem {
 
     }
 
-
-
-
-
     public Borrowable findBorrowableByTitle(String title) throws UserOrBookDoesNotExistException {
         for (Borrowable item : items) {
-            /*if (item instanceof Book) {
-                if (((Book) item).getTitle().equals(title)) {
-                    return (Book) item;
-                } else if (item instanceof Omnibus) {
-                    for (Book book : ((Omnibus) item).getBooks()) {
-                            if (book.getTitle().equals(title)) {
-                                return (Omnibus) item;
-                            }
-                        }
-                    }
-                }*/
             if (item.getTitle().equals(title)) {
                 return item;
             }
@@ -112,9 +97,6 @@ public class LibrarySystem {
       item.borrowItem(this, facultyMember);
     }
 
-
-
-
     /**
      * finds lending by book title
      * @param item
@@ -128,7 +110,6 @@ public class LibrarySystem {
         }
         return null;
     }
-
 
     public void returnItem(User user, Borrowable item) throws UserOrBookDoesNotExistException {
         item.returnItem(this, user);

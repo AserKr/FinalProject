@@ -4,24 +4,15 @@ import java.util.ArrayList;
 
 public class Omnibus implements Borrowable {
     private ArrayList<Book> books;
-
-
-
     String title;
+
+
+
     public Omnibus(String title, ArrayList<Book> books) {
         this.title=title;
         this.books = books;
     }
 
-
-    public void addBook(String title, ArrayList<Author> authors) throws EmptyAuthorListException {
-        Book book=new Book(title, authors);
-        books.add(book);
-
-    }
-    public void removeBook (Book book){
-            books.remove(book);
-        }
 
     public ArrayList<Book> getBooks() {
         return books;
@@ -29,7 +20,6 @@ public class Omnibus implements Borrowable {
     public void setBooks(ArrayList<Book> books) {
         this.books = books;
     }
-
 
 
     public void borrowItem(LibrarySystem librarySystem, User user)  {
@@ -58,6 +48,7 @@ public class Omnibus implements Borrowable {
             throw new UserOrBookDoesNotExistException("Lending does not exist");
         }
     }
+
     public String getTitle() {
         return title;
     }
