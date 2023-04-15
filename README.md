@@ -11,6 +11,10 @@ Maven:
 - `mvn compile` compiles all implementation classes.
 - `mvn test` runs all test cases (i.e. all classes with a name that either starts with `Test` or ends with `Test`, `Tests`, or `TestCase`).
 
+Jar:
+- `sh createjar.cmd` generates a compressed jar file and places it in the current directory.
+- `sh runjar.cmd` runs the jar file
+
 
 
 License: [MIT](http://www.opensource.org/licenses/mit-license.php)
