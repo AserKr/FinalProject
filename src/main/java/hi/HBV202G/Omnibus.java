@@ -35,7 +35,7 @@ public class Omnibus implements Borrowable {
     public void returnItem(LibrarySystem librarySystem, User user) throws UserOrBookDoesNotExistException {
         boolean lendingExists = false;
         for (Lending lending : librarySystem.getLendings()) {
-            if (lending.getBorrowable().getTitle().equals(this.getTitle())) {
+            if (lending.getBorrowable().equals(this)) {
                 lendingExists = true;
                 librarySystem.getLendings().remove(lending);
                 for (Book book: this.getBooks()) {
@@ -60,7 +60,7 @@ public class Omnibus implements Borrowable {
             if (member instanceof FacultyMember) {
                 if (member.getName().equals(facultyMember.getName())) {
                     for (Lending lending : librarySystem.getLendings()) {
-                        if (lending.getBorrowable() instanceof Omnibus && lending.getBorrowable() == this) {
+                        if (lending.getBorrowable() instanceof Omnibus && lending.getBorrowable().equals(this)) {
                             for (Book book:getBooks()){
                                 book.extendLending(facultyMember,librarySystem);
                         }
@@ -71,6 +71,9 @@ public class Omnibus implements Borrowable {
                     }
 
                 }
+            else {
+                throw new UserOrBookDoesNotExistException("Member is not a faculty member");
+            }
             }
 
         }

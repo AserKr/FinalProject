@@ -7,6 +7,8 @@ import java.util.List;
 public class LibrarySystem {
 
 
+
+
     private ArrayList<Borrowable> items;
 
     public ArrayList<User> getUsers() {
@@ -80,7 +82,7 @@ public class LibrarySystem {
         if (findBorrowableByTitle(item.getTitle()) == null) {
             throw new UserOrBookDoesNotExistException("Item does not exist");
         } else if (findLending(item)!=null) {
-            throw new UserOrBookDoesNotExistException("Item is not available");
+            throw new UserOrBookDoesNotExistException("The Item is not available");
         } else {
             findBorrowableByTitle(item.getTitle()).borrowItem(this, user);
         }
@@ -94,7 +96,7 @@ public class LibrarySystem {
 
 
     public void extendLending(FacultyMember facultyMember, Borrowable item) throws UserOrBookDoesNotExistException {
-      item.borrowItem(this, facultyMember);
+        item.extendLending(facultyMember, this);
     }
 
     /**
@@ -104,13 +106,15 @@ public class LibrarySystem {
      */
     public Lending findLending(Borrowable item) {
         for (Lending lending : lendings) {
-            if (lending.getBorrowable().getTitle().equals(item.getTitle())) {
+            if (lending.getBorrowable().equals(item)) {
                 return lending;
             }
         }
         return null;
     }
-
+    public ArrayList<Borrowable> getItems() {
+        return items;
+    }
     public void returnItem(User user, Borrowable item) throws UserOrBookDoesNotExistException {
         item.returnItem(this, user);
     }

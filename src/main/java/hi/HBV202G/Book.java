@@ -42,9 +42,10 @@ public  class Book implements Borrowable{
     public void borrowItem(LibrarySystem librarySystem, User user) {
         librarySystem.getLendings().add(new Lending(this, user));
     }
+
     public void returnItem(LibrarySystem librarySystem, User user) throws UserOrBookDoesNotExistException {
         for (Lending lending : librarySystem.getLendings()) {
-            if (lending.getBorrowable().getTitle().equals(this.getTitle())) {
+            if (lending.getBorrowable().equals(this)) {
                 librarySystem.getLendings().remove(lending);
                 break;
             } else {
@@ -59,7 +60,7 @@ public  class Book implements Borrowable{
             if (member instanceof FacultyMember) {
                 if (member.getName().equals(facultyMember.getName())) {
                     for (Lending lending : librarySystem.getLendings()) {
-                        if (lending.getBorrowable().getTitle().equals(this.getTitle())) {
+                        if (lending.getBorrowable().equals(this)) {
                             lending.setDueDate(lending.getDueDate().plusDays(10));
                         } else throw new UserOrBookDoesNotExistException("Lending does not exist");
 

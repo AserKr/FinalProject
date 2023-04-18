@@ -12,6 +12,7 @@ Maven:
 - `mvn test` runs all test cases (i.e. all classes with a name that either starts with `Test` or ends with `Test`, `Tests`, or `TestCase`).
 
 Jar:
+- Navigate to the FinalProject directory.
 - `sh createjar.cmd` generates a compressed jar file and places it in the current directory.
 - `sh runjar.cmd` runs the jar file
 
