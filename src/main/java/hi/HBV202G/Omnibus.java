@@ -22,15 +22,24 @@ public class Omnibus implements Borrowable {
     }
 
 
-    public void borrowItem(LibrarySystem librarySystem, User user)  {
+    public void borrowItem(LibrarySystem librarySystem, User user) throws UserOrBookDoesNotExistException {
+        OmnibusAvailable(librarySystem);
            for (Book book : this.getBooks()) {
-               book.borrowItem(librarySystem, user);
-           }
-           librarySystem.getLendings().add(new Lending(this, user));
+                   book.borrowItem(librarySystem, user);
+               }
+
+            librarySystem.getLendings().add(new Lending(this, user));
 
 
     }
 
+    public void OmnibusAvailable(LibrarySystem librarySystem) throws UserOrBookDoesNotExistException {
+        for (Book book : this.getBooks()) {
+            if (librarySystem.findLending(book) != null) {
+                throw new UserOrBookDoesNotExistException("The Omnibus is not entirely available");
+            }
+        }
+    }
 
     public void returnItem(LibrarySystem librarySystem, User user) throws UserOrBookDoesNotExistException {
         boolean lendingExists = false;

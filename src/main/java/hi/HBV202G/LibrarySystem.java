@@ -35,6 +35,9 @@ public class LibrarySystem {
     }
 
     public void addOmnibus(String title, ArrayList<Book> book) throws EmptyAuthorListException {
+        if (book.isEmpty()){
+            throw new EmptyAuthorListException("Book list empty");
+        }
         for (Book book1 : book) {
             if (book1.getAuthors().isEmpty())
             {
