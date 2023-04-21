@@ -13,14 +13,14 @@
     <licenses>
         <license>
             <name>MIT</name>
-            <url>http://www.opensource.org/licenses/mit-license.php</url>
+            <url>LICENSE.txt</url>
         </license>
     </licenses>
     <organization>
         <name>University of Iceland</name>
         <url>https://www.hi.is</url>
     </organization>
-    <url>https://github.com/AserK/FinalProject</url>
+    <url>https://github.com/AserKr/FinalProject</url>
     <build>
         <plugins>
             <plugin>

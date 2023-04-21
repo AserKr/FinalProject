@@ -13,7 +13,10 @@ Maven:
 - 'mvn site'
 - `mvn test` runs all test cases (i.e. all classes with a name that either starts with `Test` or ends with `Test`, `Tests`, or `TestCase`).
 - `mvn site` generates a documentation site for the project information.
+- `mvn exec:java` Executes the java programs from this project.
 
+
+**NOTE:Make sure to compile before attempting to execute and run the project**
 
 
 Jar:
@@ -39,12 +42,6 @@ Jar:
 
 
 
-
-
-
----
-# License
-License: [MIT](LICENSE.txt)
 
 
 
