@@ -3,7 +3,10 @@ package hi.HBV202G;
 import java.util.ArrayList;
 
 public class Omnibus implements Borrowable {
+
+
     private ArrayList<Book> books;
+
     private String title;
 
 
@@ -17,6 +20,7 @@ public class Omnibus implements Borrowable {
     public ArrayList<Book> getBooks() {
         return books;
     }
+
 
 
 
@@ -83,9 +87,17 @@ public class Omnibus implements Borrowable {
             }
             }
 
-        }
+
 
     }
+    public void setBooks(ArrayList<Book> books) {
+        this.books = books;
+    }
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+}
 
 
 

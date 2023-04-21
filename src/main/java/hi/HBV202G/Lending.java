@@ -4,13 +4,14 @@ import java.time.LocalDate;
 
 public class Lending {
     private LocalDate dueDate;
-    private Borrowable item;
+
+    private Borrowable borrowable;
     private User user;
 
     public Lending(Borrowable item, User user) {
         LocalDate now = LocalDate.now();
         this.dueDate = now.plusDays(30);
-        this.item = item;
+        this.borrowable = item;
         this.user = user;
     }
 
@@ -33,13 +34,13 @@ public class Lending {
     }
 
     public Borrowable getBorrowable() {
-        return item;
-    }
-
-    public void setItem(Book item) {
-        this.item = item;
+        return borrowable;
     }
 
 
+
+    public void setBorrowable(Borrowable borrowable) {
+        this.borrowable = borrowable;
+    }
 
 }
