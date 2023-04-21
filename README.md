@@ -51,7 +51,7 @@ License: [MIT](LICENSE.txt)
 
 ---
 # Design
-This Program implements the Composistion design pattern between the Omnibuses and Books, where an omnibus contains many books
+This Program implements the Composistion design pattern between the Omnibuses and Books, where an omnibus contains many books and when an action is performed on an omnibus all of its children books undergo the same action
 [Class Diagram](src/site/markdown/DESIGN.md)
 
 
