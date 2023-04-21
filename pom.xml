@@ -9,7 +9,7 @@
     <version>1.0-SNAPSHOT</version>
     <name>Final Assignment</name>
     <description> This Project is Simulation of a library System in which the user can interact with it via the provided textual interface.
-        The project was built using the following tools and features JUnit, UML, Design Patterns, a Jar file, a README.md file, Maven and Git.</description>
+        The project was built using the following tools and features JUnit, UML, Design Patterns (Composite), a Jar file, a README.md file, Maven and Git.</description>
     <licenses>
         <license>
             <name>MIT</name>
