@@ -59,11 +59,15 @@ public  class Book implements Borrowable{
         for (User member : librarySystem.getUsers()) {
             if (member instanceof FacultyMember) {
                 if (member.getName().equals(facultyMember.getName())) {
+                    boolean lendingExists = false;
                     for (Lending lending : librarySystem.getLendings()) {
                         if (lending.getBorrowable().equals(this)) {
                             lending.setDueDate(lending.getDueDate().plusDays(10));
-                        } else throw new UserOrBookDoesNotExistException("Lending does not exist");
-
+                            lendingExists = true;
+                        }
+                    }
+                    if (!lendingExists) {
+                        throw new UserOrBookDoesNotExistException("Lending does not exist");
                     }
 
                 }
