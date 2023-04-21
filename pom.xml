@@ -8,7 +8,8 @@
     <artifactId>FinalProject</artifactId>
     <version>1.0-SNAPSHOT</version>
     <name>Final Assignment</name>
-    <description>Eitthv falleg lýsing in course HBV202G Software Design and Construction</description>
+    <description> This Project is Simulation of a library System in which the user can interact with it via the provided textual interface.
+        The project was built using the following tools and features JUnit, UML, Design Patterns, a Jar file, a README.md file, Maven and Git.</description>
     <licenses>
         <license>
             <name>MIT</name>
@@ -49,8 +50,8 @@
         </plugins>
     </build>
     <properties>
-        <maven.compiler.source>19</maven.compiler.source>
-        <maven.compiler.target>19</maven.compiler.target>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
