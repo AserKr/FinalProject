@@ -47,8 +47,8 @@ public static void readBookList(String fileName, LibrarySystem librarySystem) th
 
                 if (matcher2.matches()) {
                     String[] authorsNames = matcher2.group(1).split(",");
-                    for (int i = 0; i < authorsNames.length; i++) {
-                        authors.add(new Author(authorsNames[i].trim()));
+                    for (String authorsName : authorsNames) {
+                        authors.add(new Author(authorsName.trim()));
                     }
                     String line2 = books.readLine();
                     matcher3 = pattern2.matcher(line2);
@@ -70,7 +70,10 @@ public static void readBookList(String fileName, LibrarySystem librarySystem) th
         }
 
     }
-public static void adminCase(LibrarySystem librarySystem, Scanner scanner) throws EmptyAuthorListException {
+
+
+public static void adminCase(LibrarySystem librarySystem, Scanner scanner) throws EmptyAuthorListException, UserOrBookDoesNotExistException {
+
     System.out.println("\033[1m"+"What is your name?"+ "\033[0m");
     String name = scanner.nextLine();
     try {
@@ -79,19 +82,67 @@ public static void adminCase(LibrarySystem librarySystem, Scanner scanner) throw
         FacultyMember admin = new FacultyMember(name, "Adminstrators");
         librarySystem.addFacultyMemberUser(admin.getName(), admin.getDepartment());
     }
-    System.out.println("\033[1m"+"Welcome " + name + ", what is the title of the book that you would like to add?"+ "\033[0m");
-    String title = scanner.next();
-    scanner.nextLine();
-    System.out.println("\033[1m"+"and what is the name of the author/s? (seperate names with a comma)"+ "\033[0m");
-    List<Author> authors = new ArrayList<>();
-    String authorInput = scanner.nextLine();
-    String[] authorNames = authorInput.split(",");
-    for (String authorName : authorNames) {
-        authors.add(new Author(authorName.trim()));
-    }
-    librarySystem.addBookWithTitleAndAuthorlist(title, authors);
-    System.out.println("\033[1m"+"thank you for adding a book"+ "\033[0m");
+    while (true) {
+        System.out.println("\033[1m"+"Would you like to add a Book? (Type 'yes' or 'no')"+ "\033[0m");
+        String borrowBook = scanner.nextLine().trim();
+        if (borrowBook.equals("yes")) {
+            System.out.println("\033[1m" + "Welcome " + name + ", what is the title of the book that you would like to add?" + "\033[0m");
+            String bookTitle = scanner.next();
+            scanner.nextLine();
+            System.out.println("\033[1m" + "what is the name of the author/s? (seperate names with a comma)" + "\033[0m");
+            List<Author> authors = new ArrayList<>();
+            String authorInput = scanner.nextLine();
+            String[] authorNames = authorInput.split(",");
+            for (String authorName : authorNames) {
+                authors.add(new Author(authorName.trim()));
+            }
+            librarySystem.addBookWithTitleAndAuthorlist(bookTitle, authors);
+            System.out.println("\033[1m" + "Thank you for adding a book" + "\033[0m");
+            System.out.println("\033[1m" + "Book added:" + "\033[0m" + " " + bookTitle);
+        }
+        else if (borrowBook.equals("no")) {
+            break;
+        }
+        else {
+            System.out.println("\033[1m" + "Invalid input" + "\033[0m");
+        }
 
+    }
+    while (true) {
+        System.out.println("\033[1m"+"Would you like to add an Omnibus? (Type 'yes' or 'no')"+ "\033[0m");
+        String borrowOmnoibus = scanner.nextLine().trim();
+        if (borrowOmnoibus.equals("yes")) {
+            System.out.println("\033[1m" + "What is the title of the Omnibus that you would like to add?" + "\033[0m");
+            String omnibusTitle = scanner.next();
+            scanner.nextLine();
+            System.out.println("\033[1m" + "what are the names of the Books (Available books can be seen on the top)? (seperate names with a comma)" + "\033[0m");
+            ArrayList<Book> books = new ArrayList<>();
+            String booksInput = scanner.nextLine();
+            String[] bookNames = booksInput.split(",");
+            for (String book : bookNames) {
+                try {
+                    books.add((Book) librarySystem.findBorrowableByTitle(book.trim()));
+                } catch (UserOrBookDoesNotExistException e) {
+                    System.out.println(e.getMessage());
+                }
+
+            }
+            if (!books.isEmpty()) {
+                librarySystem.addOmnibus(omnibusTitle, books);
+            }
+            System.out.println("\033[1m" + "Thank you for adding an Omnibus" + "\033[0m");
+            System.out.println("\033[1m" + "OMNIBUSE added: " + omnibusTitle + "\033[0m");
+            for (String book : bookNames) {
+                System.out.println(" " + book.trim() + " ");
+            }
+
+        } else if (borrowOmnoibus.equals("no")) {
+            break;
+        }
+        else {
+            System.out.println("\033[1m" + "Invalid input"+ "\033[0m");
+        }
+    }
 }
     public static void studentCase(LibrarySystem librarySystem, Scanner scanner) throws UserOrBookDoesNotExistException {
         System.out.println("\033[1m"+"What is your name?"+ "\033[0m");
@@ -136,9 +187,9 @@ public static void adminCase(LibrarySystem librarySystem, Scanner scanner) throw
         System.out.println("\033[1m"+"Would you like to extend a lending? (Type 'yes' or 'no')"+ "\033[0m");
         String extendLending = scanner.next();
         boolean extendLendingBoolean = extendLending.equals("yes");
-        if (extendLendingBoolean == true) {
+        if (extendLendingBoolean) {
             boolean userBookBoolean=false;
-            while (userBookBoolean == false) {
+            while (!userBookBoolean) {
                 System.out.println("\033[1m"+"What is the name of the book?"+ "\033[0m");
                 scanner.nextLine();
                 String bookName = scanner.nextLine();
@@ -157,7 +208,6 @@ public static void adminCase(LibrarySystem librarySystem, Scanner scanner) throw
                 } catch (UserOrBookDoesNotExistException e) {
                     System.out.println("\033[1m"+e.getMessage()+ "\033[0m");
                     System.out.println("\033[1m"+"Please try again!"+ "\033[0m");
-                    userBookBoolean=false;
                 }
             }
         }
@@ -187,18 +237,24 @@ public static void adminCase(LibrarySystem librarySystem, Scanner scanner) throw
         readOmnibus("file:src\\main\\java\\hi\\HBV202G\\Omnibus.txt", librarySystem);
        readBookList("file:src\\main\\java\\hi\\HBV202G\\Booklist.txt", librarySystem);
        librarySystem.addFacultyMemberUser("Helmut", "Adminstrators");
+
+       label:
         while (true) {
             System.out.println("\033[1m"+"Are you an admin or a student? (Type 'quit' to exit)"+ "\033[0m");
             String input = scanner.next();
             scanner.nextLine();
-            if (input.equals("admin")) {
-                adminCase(librarySystem, scanner);
-            } else if (input.equals("student")) {
-             studentCase(librarySystem, scanner);
-            } else if (input.equals("quit")) {
-                break;
-            } else {
-                System.out.println("Invalid input");
+            switch (input) {
+                case "admin":
+                    adminCase(librarySystem, scanner);
+                    break;
+                case "student":
+                    studentCase(librarySystem, scanner);
+                    break;
+                case "quit":
+                    break label;
+                default:
+                    System.out.println("Invalid input");
+                    break;
             }
         }
         System.out.println(librarySystem.getLendings().toString());

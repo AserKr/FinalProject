@@ -1,7 +1,7 @@
 package hi.HBV202G;
 
 public interface Borrowable {
-    void borrowItem(LibrarySystem librarySystem, User user);
+    void borrowItem(LibrarySystem librarySystem, User user) throws UserOrBookDoesNotExistException;
     void returnItem(LibrarySystem librarySystem, User user) throws UserOrBookDoesNotExistException;
     void  extendLending(FacultyMember facultyMember, LibrarySystem librarySystem) throws UserOrBookDoesNotExistException ;
 

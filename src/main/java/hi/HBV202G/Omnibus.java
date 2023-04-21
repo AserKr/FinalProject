@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Omnibus implements Borrowable {
     private ArrayList<Book> books;
-    String title;
+    private String title;
 
 
 
@@ -17,20 +17,27 @@ public class Omnibus implements Borrowable {
     public ArrayList<Book> getBooks() {
         return books;
     }
-    public void setBooks(ArrayList<Book> books) {
-        this.books = books;
-    }
 
 
-    public void borrowItem(LibrarySystem librarySystem, User user)  {
+
+    public void borrowItem(LibrarySystem librarySystem, User user) throws UserOrBookDoesNotExistException {
+        isOmnibusAvailable(librarySystem);
            for (Book book : this.getBooks()) {
-               book.borrowItem(librarySystem, user);
-           }
-           librarySystem.getLendings().add(new Lending(this, user));
+                   book.borrowItem(librarySystem, user);
+               }
+
+            librarySystem.getLendings().add(new Lending(this, user));
 
 
     }
 
+    public void isOmnibusAvailable(LibrarySystem librarySystem) throws UserOrBookDoesNotExistException {
+        for (Book book : this.getBooks()) {
+            if (librarySystem.findLending(book) != null) {
+                throw new UserOrBookDoesNotExistException("The Omnibus is not entirely available");
+            }
+        }
+    }
 
     public void returnItem(LibrarySystem librarySystem, User user) throws UserOrBookDoesNotExistException {
         boolean lendingExists = false;
