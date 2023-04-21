@@ -102,11 +102,7 @@ public class LibrarySystem {
         item.extendLending(facultyMember, this);
     }
 
-    /**
-     * finds lending by book title
-     * @param item
-     * @return
-     */
+
     public Lending findLending(Borrowable item) {
         for (Lending lending : lendings) {
             if (lending.getBorrowable().equals(item)) {

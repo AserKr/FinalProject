@@ -19,7 +19,7 @@
         <name>University of Iceland</name>
         <url>https://www.hi.is</url>
     </organization>
-
+    <url>https://github.com/AserK/FinalProject</url>
     <build>
         <plugins>
             <plugin>
@@ -30,7 +30,22 @@
                     <mainClass>hi.HBV202G.LibrarySystemApplication</mainClass>
                 </configuration>
             </plugin>
-
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0</version>
+                <configuration>
+                    <shutdown>kill</shutdown>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-site-plugin</artifactId>
+                <version>3.7.1</version>
+            </plugin>
+            <plugin>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>3.0.0</version>
+            </plugin>
         </plugins>
     </build>
     <properties>
@@ -38,6 +53,11 @@
         <maven.compiler.target>19</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
+
+
+
+
     <repositories>
         <repository>
             <id>jitpack.io</id>
